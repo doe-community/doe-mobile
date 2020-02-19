@@ -15,6 +15,6 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "prod": "npm start"
+    "prod": "npm index.js"
   }
 }
