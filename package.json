@@ -4,5 +4,17 @@
   "main": "index.js",
   "repository": "https://github.com/simeaol/doe.git",
   "author": "Simeão David Lamine <simeaolm@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "prod": "npm start"
+  }
 }
