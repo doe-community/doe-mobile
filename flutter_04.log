@@ -1,0 +1,76 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --no-color packages get
+
+## exception
+
+ArgumentError: Invalid argument(s): Cannot find executable for /home/simeao/flutter/bin/cache/dart-sdk/bin/pub.
+
+```
+#0      _getExecutable (package:process/src/interface/local_process_manager.dart:127:5)
+#1      LocalProcessManager.start (package:process/src/interface/local_process_manager.dart:43:30)
+#2      _DefaultProcessUtils.start (package:flutter_tools/src/base/process.dart:413:27)
+#3      _DefaultProcessUtils.stream (package:flutter_tools/src/base/process.dart:431:35)
+#4      _DefaultPub.batch (package:flutter_tools/src/dart/pub.dart:259:33)
+#5      _DefaultPub.get (package:flutter_tools/src/dart/pub.dart:176:15)
+#6      PackagesGetCommand._runPubGet (package:flutter_tools/src/commands/packages.dart:98:17)
+#7      PackagesGetCommand.runCommand (package:flutter_tools/src/commands/packages.dart:128:11)
+#8      FlutterCommand.verifyThenRunCommand (package:flutter_tools/src/runner/flutter_command.dart:615:18)
+#9      _asyncThenWrapperHelper.<anonymous closure> (dart:async-patch/async_patch.dart:73:64)
+#10     _rootRunUnary (dart:async/zone.dart:1134:38)
+#11     _CustomZone.runUnary (dart:async/zone.dart:1031:19)
+#12     _FutureListener.handleValue (dart:async/future_impl.dart:139:18)
+#13     Future._propagateToListeners.handleValueCallback (dart:async/future_impl.dart:680:45)
+#14     Future._propagateToListeners (dart:async/future_impl.dart:709:32)
+#15     Future._completeWithValue (dart:async/future_impl.dart:524:5)
+#16     Future._asyncComplete.<anonymous closure> (dart:async/future_impl.dart:554:7)
+#17     _rootRun (dart:async/zone.dart:1126:13)
+#18     _CustomZone.run (dart:async/zone.dart:1023:19)
+#19     _CustomZone.runGuarded (dart:async/zone.dart:925:7)
+#20     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:965:23)
+#21     _microtaskLoop (dart:async/schedule_microtask.dart:43:21)
+#22     _startMicrotaskLoop (dart:async/schedule_microtask.dart:52:5)
+#23     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:393:30)
+#24     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:418:5)
+#25     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:174:12)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, v1.12.13+hotfix.8, on Linux, locale en_US.UTF-8)
+    • Flutter version 1.12.13+hotfix.8 at /home/simeao/flutter
+    • Framework revision 0b8abb4724 (3 weeks ago), 2020-02-11 11:44:36 -0800
+    • Engine revision e1e6ced81d
+    • Dart version 2.7.0
+
+[!] Android toolchain - develop for Android devices (Android SDK version 29.0.3)
+    • Android SDK at /home/simeao/Android/Sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-29, build-tools 29.0.3
+    • Java binary at: /home/simeao/Downloads/android-studio/jre/bin/java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b4-5784211)
+    ✗ Android license status unknown.
+      Try re-installing or updating your Android SDK Manager.
+      See https://developer.android.com/studio/#downloads or visit https://flutter.dev/setup/#android-setup for detailed instructions.
+
+[✓] Android Studio (version 3.6)
+    • Android Studio at /home/simeao/Downloads/android-studio
+    • Flutter plugin version 44.0.2
+    • Dart plugin version 192.7761
+    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b4-5784211)
+
+[!] IntelliJ IDEA Community Edition (version 2019.3)
+    • IntelliJ at /snap/intellij-idea-community/202
+    ✗ Flutter plugin not installed; this adds Flutter specific functionality.
+    ✗ Dart plugin not installed; this adds Dart specific functionality.
+    • For information about installing plugins, see
+      https://flutter.dev/intellij-setup/#installing-the-plugins
+
+[✓] Connected device (1 available)
+    • SM G935F • ce12160cebd7102401 • android-arm64 • Android 8.0.0 (API 26)
+
+! Doctor found issues in 2 categories.
+```
