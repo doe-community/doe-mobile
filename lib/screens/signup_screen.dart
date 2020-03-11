@@ -1,3 +1,5 @@
+import 'package:doe/services/firebase_service.dart';
+import 'package:doe/utils/ToastUtils.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -11,11 +13,22 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   String email, password, name;
 
-  _submit(){
+  _submit() async{
     if(_formKey.currentState.validate()){
       _formKey.currentState.save();
       print('Form validated with sucess! $name/$email/$password');
-      //Loggin in the home
+      //Register new user
+      try {
+        var user = await FirebaseService.registerUser(email, password);
+        print(user.toString());
+        ToastUtils.showSuccess('Signup done with success!.');
+        Navigator.pop(context);
+
+      } catch (e) {
+        ToastUtils.showError('Error registering user. ${e.message}');
+        print('Error registering new user with email: $email - $e.code : $e.message');
+        _formKey.currentState.reset();
+      }
     }
   }
 

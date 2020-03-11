@@ -1,8 +1,13 @@
 import 'package:doe/screens/custom_icon.dart';
 import 'package:doe/screens/signup_screen.dart';
 import 'package:doe/screens/social_icon.dart';
+import 'package:doe/services/firebase_service.dart';
+import 'package:doe/utils/ToastUtils.dart';
+import 'package:doe/widgets/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String id = 'login_screen';
@@ -13,13 +18,22 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   final _formKey = GlobalKey<FormState>();
-  String email, password;
+  String _email, _password;
 
-  _submit(){
+  _submit() async {
     if(_formKey.currentState.validate()){
       _formKey.currentState.save();
-      print('Form validated with sucess! $email/$password');
+      print('User with email: $_email and pass: $_password is trying to login.');
       //Loggin in the home
+      try {
+        print('user $_email logged sucessfuly.');
+        FirebaseUser _user = await FirebaseService.signInWithEmailAndPassword(_email, _password);
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen(user: _user))); 
+      }catch (e) {
+        ToastUtils.showError(e.message);
+        _formKey.currentState.reset();
+        print('Error on firebase authentication using email and password. code: ${e.code} : ${e.message}');
+      }
     }
   }
 
@@ -65,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (input) => !input.contains('@')
                           ? 'Please enter a valid email!'
                           : null,
-                      onSaved: (input) => email = input,
+                      onSaved: (input) => _email = input,
                     ),
                   ),
                   Padding(
@@ -81,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (input) => input.length < 4
                           ? 'Password must be at least 6 characters!'
                           : null,
-                      onSaved: (input) => password = input,
+                      onSaved: (input) => _password = input,
                       obscureText: true,
                     ),
                   ),

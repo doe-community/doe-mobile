@@ -1,10 +1,17 @@
 import 'package:doe/widgets/hotel_carousel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'destination_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
+  static final String id = 'home_screen';
+  final FirebaseUser user;
+
+  const HomeScreen({Key key, @required this.user}) : super(key: key);
+
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -88,17 +95,17 @@ Widget _buildIcon(int index){
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.local_pizza,
+              FontAwesomeIcons.camera,
               size: 30.0,
             ),
             title: SizedBox.shrink(),
           ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
-              radius: 15.0,
+              radius: 20.0,
               backgroundImage: NetworkImage('https://www.tupi.fm/wp-content/uploads/2019/08/Ronaldinho-Gaúcho.jpg'),
             ),
-            title: Text('search')
+            title: SizedBox.shrink(),
           ),
         ],
       ),
