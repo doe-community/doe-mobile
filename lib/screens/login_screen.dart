@@ -86,6 +86,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 8,),
+                  Divider(
+                    height: 60.0,
+                    color: Colors.grey[600],
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[

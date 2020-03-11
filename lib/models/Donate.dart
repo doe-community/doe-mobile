@@ -1,8 +1,8 @@
 import 'package:doe/models/User.dart';
 
-/**
- * The donate object representing each donation published
- */
+
+ /// The donate object representing each donation published
+
 class Donate {
   int id;
   String title;

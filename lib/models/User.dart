@@ -1,7 +1,5 @@
 
-/**
- * The user schema on the system
- */
+///T he user schema on the system
 class User {
   String name;
   String email;
