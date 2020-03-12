@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "529018533482",
+    "firebase_url": "https://doei-b018d.firebaseio.com",
+    "project_id": "doei-b018d",
+    "storage_bucket": "doei-b018d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529018533482:android:112fd7fcc3d3738fb23c13",
+        "android_client_info": {
+          "package_name": "com.example.doe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529018533482-rlcepo6n5kuofomg1bml9hd0v2vf90ah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIMxR0Lo_lkqUe2DAL7gqHoQqCxVzKVVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529018533482-rlcepo6n5kuofomg1bml9hd0v2vf90ah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
