@@ -1,3 +1,4 @@
+import 'package:doe/services/firebase_service.dart';
 import 'package:doe/widgets/hotel_carousel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,9 @@ import 'destination_carousel.dart';
 class HomeScreen extends StatefulWidget {
   static final String id = 'home_screen';
   final FirebaseUser user;
+  final VoidCallback onSignedOut;
 
-  const HomeScreen({Key key, @required this.user}) : super(key: key);
+  const HomeScreen({Key key, @required this.user, this.onSignedOut}) : super(key: key);
 
 
   @override
@@ -27,6 +29,15 @@ class _HomeScreenState extends State<HomeScreen> {
     FontAwesomeIcons.walking,
     FontAwesomeIcons.biking,
   ];
+
+  void _signOut() async {
+    try {
+      await FirebaseService.signout();
+      widget.onSignedOut();
+    } catch (e) {
+      print(e.message);
+    }
+  }
 
 Widget _buildIcon(int index){
   return GestureDetector(
@@ -55,6 +66,14 @@ Widget _buildIcon(int index){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.exit_to_app), 
+            onPressed: () => _signOut,
+            ),
+        ],
+      ),
       body: SafeArea(child: ListView(
         padding: EdgeInsets.symmetric(vertical: 30.0),
         children: <Widget>[

@@ -1,4 +1,5 @@
 import 'package:doe/screens/login_screen.dart';
+import 'package:doe/screens/root_screen.dart';
 import 'package:doe/screens/signup_screen.dart';
 import 'package:doe/widgets/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         accentColor:  Color(0xFFD8ECF1),
         scaffoldBackgroundColor: Color(0xFFF3F5F7),
       ),
-      home: LoginScreen(),
+      home: RootPageScreen(),
       routes: {
         LoginScreen.id: (context) => LoginScreen(),
         SignupScreen.id: (context) => SignupScreen(),

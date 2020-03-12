@@ -11,6 +11,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String id = 'login_screen';
+  final VoidCallback onSignedIn;
+
+  const LoginScreen({Key key, this.onSignedIn}) : super(key: key);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
