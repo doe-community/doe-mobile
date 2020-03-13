@@ -1,4 +1,0 @@
-#Mon Mar 02 22:45:49 BRT 2020
-base.0=/home/simeao/dev/flutter/doe/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
