@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'custom_icon.dart';
-import 'social_icon.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String id = 'login_screen';
@@ -35,7 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
       try {
         print('user $_email logged sucessfuly.');
         FirebaseUser _user = await FirebaseService.signInWithEmailAndPassword(_email, _password);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen(user: _user))); 
+        Navigator.pushReplacement(context, 
+        MaterialPageRoute(builder: (_) => HomeScreen(
+          user: _user, 
+          onSignedOut: widget.onSignedIn,
+          )
+        )); 
       }catch (e) {
         ToastUtils.showError(e.message);
         _formKey.currentState.reset();
@@ -156,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   SizedBox(height: 20.0),
-                  SocialIcons(),
+                  SocialIcons(onSignedIn: widget.onSignedIn),
                   SizedBox(height: 40,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

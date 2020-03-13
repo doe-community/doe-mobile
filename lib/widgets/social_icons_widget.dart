@@ -4,20 +4,24 @@ import 'package:doe/services/firebase_auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SocialIcons extends StatelessWidget {
+import 'home_screen.dart';
 
-  FirebaseUser _googleLogin(){
+class SocialIcons extends StatelessWidget {
+  final VoidCallback onSignedIn;
+  SocialIcons({ this.onSignedIn });
+
+
+  void _googleLogin(BuildContext context) async {
     print('google sign in press by user.');
-    FirebaseUser _user;
     try {
-      FirebaseService.signInWithGoogleAccount()
+      await FirebaseService.signInWithGoogleAccount()
         .whenComplete(() => print('loggin with google completed.'))
-        .then((FirebaseUser user) => _user =  user )
-        .catchError((onError) => print('Error signin using google.'));
+      .then((FirebaseUser user) => 
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen(user: user, onSignedOut: onSignedIn,))) 
+      ).catchError((onError) => print('Error signin using google.'));
     } catch (err) {
       print('Error login with google account. $err.code : $err.message');
     }
-    return _user;
   }
 
   @override
@@ -40,7 +44,7 @@ class SocialIcons extends StatelessWidget {
                 Color(0xFFff355d),
               ],
             iconData: CustomIcons.google,
-            onPress: _googleLogin,//_googleLogin,
+            onPress: () => _googleLogin(context),//_googleLogin,
           ),
         ],
       );
