@@ -1,5 +1,5 @@
 import 'package:doe/screens/login_screen.dart';
-import 'package:doe/services/firebase_service.dart';
+import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/widgets/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class RootPageScreen extends StatefulWidget {
   _RootPageScreenState createState() => _RootPageScreenState();
 }
 
-///TODO:User tracker enum. PS: This approach should be improved in the future
+///User tracker enum. PS: This approach should be improved in the future
 enum AuthStatus {
   signedOut,
   signedIn,
@@ -27,8 +27,8 @@ AuthStatus authStatus = AuthStatus.signedOut;
     super.initState();
     FirebaseService.currentUser().then((userId) {
       setState(() {
-        widget.user = userId;
-        userId ==  null ? AuthStatus.signedOut : AuthStatus.signedIn;
+        //widget.user = userId;
+        authStatus = (userId ==  null) ? AuthStatus.signedOut : AuthStatus.signedIn;
       });
     });
   }
@@ -41,7 +41,7 @@ AuthStatus authStatus = AuthStatus.signedOut;
 
   void _signedOut(){
     setState(() {
-        = AuthStatus.signedOut;
+        authStatus = AuthStatus.signedOut;
     });
   }
   
@@ -59,6 +59,11 @@ AuthStatus authStatus = AuthStatus.signedOut;
         return HomeScreen(
           user: widget.user,
           onSignedOut: _signedOut,);
+      }
+      default: {
+        return LoginScreen(
+          onSignedIn: _signedIn,
+        );
       }
     }
   }

@@ -1,7 +1,5 @@
-import 'package:doe/screens/custom_icon.dart';
 import 'package:doe/screens/signup_screen.dart';
-import 'package:doe/screens/social_icon.dart';
-import 'package:doe/services/firebase_service.dart';
+import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/utils/ToastUtils.dart';
 import 'package:doe/widgets/home_screen.dart';
 import 'package:flutter/cupertino.dart';
