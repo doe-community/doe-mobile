@@ -1,3 +1,4 @@
+import 'package:doe/screens/donation_screen/galery_pick_screen.dart';
 import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/widgets/hotel_carousel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,29 +50,43 @@ class _HomeScreenState extends State<HomeScreen> {
 
   }
 
-Widget _buildIcon(int index){
-  return GestureDetector(
-    onTap: (){
-      setState(() {
-        _selectedIndex = index;
-      });
-    },
-      child: Container(
-      width: 60.0,
-      height: 60.0,
-      decoration: BoxDecoration(
-        color: _selectedIndex == index ? Theme.of(context).accentColor : Color(0xFFE7EBEE),
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      child: Icon(
-        _icons[index],
-        size: 25.0,
-        color: _selectedIndex == index ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
+  Widget _buildIcon(int index){
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+        child: Container(
+        width: 60.0,
+        height: 60.0,
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Theme.of(context).accentColor : Color(0xFFE7EBEE),
+          borderRadius: BorderRadius.circular(30.0),
         ),
+        child: Icon(
+          _icons[index],
+          size: 25.0,
+          color: _selectedIndex == index ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
+          ),
 
-    ),
-  );
-}
+      ),
+    );
+  }
+
+  Future<void> _handleClick(int index){
+    print('navigator buttom $index selected');
+    setState(() => _currentTab = index);
+    if(index == 0){//search icon
+      
+    }else if(index == 1){//camera
+      Navigator.push(context, MaterialPageRoute(builder: (_) => GaleryPickImageScreen(user: widget.user,)));
+    }else{//profile
+
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -109,11 +124,7 @@ Widget _buildIcon(int index){
       )),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentTab,
-        onTap: (int value){
-          setState(() {
-            _currentTab = value;
-          });
-        },
+        onTap: (int index) => _handleClick(index),
         items: [
           BottomNavigationBarItem(
             icon: Icon(
