@@ -41,6 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  ImageProvider _getProfileImage(){
+    if(widget.user == null){
+      return AssetImage('assets/images/profile.jpg');
+    }
+    return NetworkImage(widget.user.photoUrl);
+
+  }
+
 Widget _buildIcon(int index){
   return GestureDetector(
     onTap: (){
@@ -124,7 +132,7 @@ Widget _buildIcon(int index){
           BottomNavigationBarItem(
             icon: CircleAvatar(
               radius: 20.0,
-              backgroundImage: NetworkImage(widget.user.photoUrl),
+              backgroundImage: _getProfileImage(),
             ),
             title: SizedBox.shrink(),
           ),
