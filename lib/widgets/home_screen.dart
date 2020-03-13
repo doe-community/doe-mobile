@@ -32,6 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _signOut() async {
     try {
+      var currentUser = await FirebaseService.currentUser();
+      print('user $currentUser.email request signout');
       await FirebaseService.signout();
       widget.onSignedOut();
     } catch (e) {
@@ -70,7 +72,7 @@ Widget _buildIcon(int index){
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app), 
-            onPressed: () => _signOut,
+            onPressed: _signOut,
             ),
         ],
       ),
@@ -122,7 +124,7 @@ Widget _buildIcon(int index){
           BottomNavigationBarItem(
             icon: CircleAvatar(
               radius: 20.0,
-              backgroundImage: NetworkImage('https://www.tupi.fm/wp-content/uploads/2019/08/Ronaldinho-Gaúcho.jpg'),
+              backgroundImage: NetworkImage(widget.user.photoUrl),
             ),
             title: SizedBox.shrink(),
           ),

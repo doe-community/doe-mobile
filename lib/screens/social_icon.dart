@@ -23,7 +23,7 @@ class SocialIcon extends StatelessWidget {
           ),
         ),
         child: RawMaterialButton(
-          onPressed: (){},
+          onPressed: onPress,
           shape: CircleBorder(),
           child: Icon(iconData, color: Colors.white,),
          ),

@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'custom_icon.dart';
+import 'social_icon.dart';
+
 class LoginScreen extends StatefulWidget {
   static final String id = 'login_screen';
   final VoidCallback onSignedIn;
@@ -24,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _email, _password;
 
   _submit() async {
+    print('user click in login button.');
     if(_formKey.currentState.validate()){
       _formKey.currentState.save();
       print('User with email: $_email and pass: $_password is trying to login.');
