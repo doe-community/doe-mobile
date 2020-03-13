@@ -24,10 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentTab = 0;
 
   List<IconData> _icons = [
-    FontAwesomeIcons.plane,
-    FontAwesomeIcons.bed,
-    FontAwesomeIcons.walking,
-    FontAwesomeIcons.biking,
+    FontAwesomeIcons.peopleCarry,
+    FontAwesomeIcons.book,
+    Icons.computer,
+    FontAwesomeIcons.dog,
   ];
 
   void _signOut() async {
