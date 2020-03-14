@@ -3,9 +3,10 @@ import 'package:doe/models/base_entity.dart';
 
 abstract class FirebaseDatabaseService {
   Future<void> save(collection, BaseEntity data);
+
 }
 
-class _FireBaseDatabaseService implements FirebaseDatabaseService{
+class FireBaseDatabaseServiceImpl implements FirebaseDatabaseService{
 
   Firestore _firestore = Firestore.instance;
 

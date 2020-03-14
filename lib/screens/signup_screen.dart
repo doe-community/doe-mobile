@@ -1,5 +1,5 @@
 import 'package:doe/services/firebase_auth_service.dart';
-import 'package:doe/utils/ToastUtils.dart';
+import 'package:doe/utils/toast_utils.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:doe/screens/signup_screen.dart';
 import 'package:doe/services/firebase_auth_service.dart';
-import 'package:doe/utils/ToastUtils.dart';
+import 'package:doe/utils/toast_utils.dart';
 import 'package:doe/widgets/home_screen.dart';
 import 'package:doe/widgets/social_icons_widget.dart';
 import 'package:flutter/cupertino.dart';

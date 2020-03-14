@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _handleClick(int index){
+  _handleClick(int index){
     print('navigator buttom $index selected');
     setState(() => _currentTab = index);
     if(index == 0){//search icon
