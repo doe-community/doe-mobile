@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RootPageScreen extends StatefulWidget {
-
-  FirebaseUser user;
   
   @override
   _RootPageScreenState createState() => _RootPageScreenState();
@@ -19,7 +17,7 @@ enum AuthStatus {
 }
 
 class _RootPageScreenState extends State<RootPageScreen> {
-
+FirebaseUser user;
 AuthStatus authStatus = AuthStatus.signedOut;
 
   @override
@@ -27,7 +25,7 @@ AuthStatus authStatus = AuthStatus.signedOut;
     super.initState();
     FirebaseService.currentUser().then((userId) {
       setState(() {
-        widget.user = userId;
+        user = userId;
         authStatus = (userId ==  null) ? AuthStatus.signedOut : AuthStatus.signedIn;
       });
     });
@@ -57,7 +55,7 @@ AuthStatus authStatus = AuthStatus.signedOut;
       }
       case AuthStatus.signedIn: {
         return HomeScreen(
-          user: widget.user,
+          user: user,
           onSignedOut: _signedOut,);
       }
       default: {
