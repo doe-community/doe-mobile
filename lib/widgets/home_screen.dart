@@ -43,11 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   ImageProvider _getProfileImage(){
-    if(widget.user == null){
-      return AssetImage('assets/images/profile.jpg');
+    if(widget.user != null && widget.user.photoUrl != null){
+      return NetworkImage(widget.user.photoUrl);
+    }else{
+       return AssetImage('assets/images/profile.jpg');
     }
-    return NetworkImage(widget.user.photoUrl);
-
+    
   }
 
   Widget _buildIcon(int index){
