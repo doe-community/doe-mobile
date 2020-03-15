@@ -38,6 +38,6 @@ class Donate implements BaseEntity{
         this.imageUrl = json['images'],
         this.date = json['date'],
         this.user = json['user'],
-        this.additionalInfo = json['additionalInfo']
+        this.additionalInfo = json['additional_info']
         ;
 }
