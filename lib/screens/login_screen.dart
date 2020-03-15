@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (input) => !input.contains('@')
                           ? 'Please enter a valid email!'
                           : null,
-                      onSaved: (input) => _email = input,
+                      onSaved: (input) => _email = input.trim(),
                     ),
                   ),
                   Padding(
