@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doe/models/base_entity.dart';
 
 
@@ -6,15 +7,15 @@ import 'package:doe/models/base_entity.dart';
 class Donate implements BaseEntity{
   String title;
   String city;
-  String images;
-  DateTime date;
+  String imageUrl;
+  Timestamp date;
   String user;
   String additionalInfo;
 
   Donate({ 
     this.title, 
     this.city, 
-    this.images, 
+    this.imageUrl, 
     this.date, 
     this.user, 
     this.additionalInfo,
@@ -25,10 +26,18 @@ class Donate implements BaseEntity{
   Map<String, dynamic> toJson() => <String, dynamic>{
     'title': this.title,
     'city': this.city,
-    'images': this.images,
+    'images': this.imageUrl,
     'date': this.date,
     'user': user,
     'additional_info': this.additionalInfo,
   };
 
+  Donate.fromJson(Map<String, dynamic> json)
+      : this.title = json['title'],
+        this.city = json['city'],
+        this.imageUrl = json['images'],
+        this.date = json['date'],
+        this.user = json['user'],
+        this.additionalInfo = json['additionalInfo']
+        ;
 }

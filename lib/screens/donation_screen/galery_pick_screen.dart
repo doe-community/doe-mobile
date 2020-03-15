@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:doe/models/Donate.dart';
@@ -56,8 +57,8 @@ class _GaleryPickImageScreen extends State<GaleryPickImageScreen> {
                           title: _title,
                           city: _city,
                           additionalInfo: _additionalInfo,
-                          images: basename,
-                          date: DateTime.now(),
+                          imageUrl: basename,
+                          date: Timestamp.now(),
                           user: widget.user.email
                         );
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => PublishFormScreen(donation: donation, image: _image,)));
