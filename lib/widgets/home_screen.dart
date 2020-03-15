@@ -62,33 +62,30 @@ class _HomeScreenState extends State<HomeScreen> {
   _handleSelection(int index){//header selection
     setState(() =>_selectedIndex = index);
     if(index == 1){//general selected
-      Navigator.push(context, MaterialPageRoute(builder: (_) => 
-          GeneralPostScreen(
-            databaseService: FireBaseDatabaseServiceImpl(), 
-            category: 'home',
-            title: 'Perto de você',
-            )
-          )
-        );
+    _nagivate(title: 'Perto de você', category: 'all');
     }
     if(index == 2){//book selected
-     Navigator.push(context, MaterialPageRoute(builder: (_) => 
-          GeneralPostScreen(
-            databaseService: FireBaseDatabaseServiceImpl(), 
-            category: 'book',
-            title: 'Livros',
-            )
-          )
-        );
+      _nagivate(title: 'Livros', category: 'book');
     }
 
     if(index == 3){//devices selected
-
+    _nagivate(title: 'Eletronicos', category: 'eletronic');
     }
 
     if(index == 4){//animal selected
-
+    _nagivate(title: 'Animais', category: 'animal');
     }
+  }
+
+  _nagivate({String title, String category}){
+    Navigator.push(context, MaterialPageRoute(builder: (_) => 
+          GeneralPostScreen(
+            databaseService: FireBaseDatabaseServiceImpl(), 
+            category: category,
+            title: title,
+            )
+          )
+        );
   }
 
   Widget _buildIcon(int index){
