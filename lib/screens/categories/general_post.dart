@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doe/models/Donate.dart';
+import 'package:doe/screens/categories/post_view_widget.dart';
 import 'package:doe/services/firebase_database_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GeneralPostScreen extends StatefulWidget {
   final FirebaseDatabaseService databaseService;
+  final String title;
   final String category;
 
-  const GeneralPostScreen({this.databaseService, this.category});
+  const GeneralPostScreen({this.databaseService, this.title, this.category});
 
   @override
   _GeneralPostScreenState createState() => _GeneralPostScreenState();
@@ -15,11 +18,9 @@ class GeneralPostScreen extends StatefulWidget {
 
 class _GeneralPostScreenState extends State<GeneralPostScreen> {
 
-  List<Donate> posts = [];
-  int controller = 0;
-
-  _handleView(Donate post){
-    print(post);
+  _handleView(Donate _post){
+    print(_post.toJson());
+    Navigator.push(context, CupertinoPageRoute(builder: (_) => PostViewScreen(post: _post,)));
   }
 
   @override
@@ -27,29 +28,31 @@ class _GeneralPostScreenState extends State<GeneralPostScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.category,
+          widget.title,
           style: TextStyle(
             color: Colors.black12,
             letterSpacing: 1.0,
           ),
         ),
         actions: <Widget>[
-          
+          Icon(Icons.search, size: 30.0,),
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('donations').orderBy('date').snapshots(),
+      stream: Firestore.instance.collection('donations').orderBy('date', descending: true).snapshots(), //TODO: filter donations by category
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError)
           return new Text('Error: ${snapshot.error}');
         switch (snapshot.connectionState) {
-          case ConnectionState.waiting: return new Text('Loading...');
+          case ConnectionState.waiting: return CircularProgressIndicator(
+            value: 80,
+          );
           default:
             return new ListView(
               children: snapshot.data.documents.map((DocumentSnapshot document) {
                 Donate post = Donate.fromJson(document.data);
                 return GestureDetector(
-                  onTap: () => _handleView,
+                  onTap: () => _handleView(post),
                   child: Container(
                     padding: EdgeInsets.all(10.0),
                     margin: EdgeInsets.all(5.0),
@@ -65,7 +68,7 @@ class _GeneralPostScreenState extends State<GeneralPostScreen> {
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image(
                             width: 110.0,
-                            image: post.imageUrl == null ? AssetImage('assets/images/hotel2.jpg') : NetworkImage(post.imageUrl),
+                            image: post.imageUrl == null ? AssetImage('assets/images/profile.jpg') : NetworkImage(post.imageUrl),
                             fit: BoxFit.cover, 
                           ),
                         ),
@@ -74,14 +77,39 @@ class _GeneralPostScreenState extends State<GeneralPostScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              post.title
+                              post.title,
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             Text(
-                              post.city
+                              post.city,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                             Text(
-                              '${post.date.toDate()}'
+                              '${post.date.toDate()}',
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
                             ),
+                            SizedBox(height: 5,),
+                            Container(
+                              width: 200.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                               // color: Colors.amber,
+                              ),
+                              child: Text(
+                                '${post.additionalInfo}',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                            )
                             
 
                           ],
