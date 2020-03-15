@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     if(index == 3){//devices selected
-    _nagivate(title: 'Eletronicos', category: 'eletronic');
+    _nagivate(title: 'Eletronicos', category: 'electronic');
     }
 
     if(index == 4){//animal selected
