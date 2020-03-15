@@ -135,7 +135,7 @@ class _GaleryPickImageScreen extends State<GaleryPickImageScreen> {
                             validator: (input) => input.trim().isEmpty
                                 ? 'Favor informar o tipo de produto para doação!'
                                 : null,
-                            onSaved: (input) => _title = input,
+                            onSaved: (input) => _title = input.trim(),
                           ),
                         ),
 
@@ -152,7 +152,7 @@ class _GaleryPickImageScreen extends State<GaleryPickImageScreen> {
                             validator: (input) => input.trim().isEmpty
                                 ? 'Favor informar o nome da cidade!'
                                 : null,
-                            onSaved: (input) => _city = input,
+                            onSaved: (input) => _city = input.trim(),
                           ),
                         ),
                         Padding(
@@ -169,7 +169,7 @@ class _GaleryPickImageScreen extends State<GaleryPickImageScreen> {
                             validator: (input) => input.trim().isEmpty
                                 ? 'Favor fornecer informações adicionais a respeito da doação!'
                                 : null,
-                            onSaved: (input) => _additionalInfo = input,
+                            onSaved: (input) => _additionalInfo = input.trim(),
                           ),
                         ),
                       ],
