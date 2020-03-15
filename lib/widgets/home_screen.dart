@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentTab = 0;
 
   List<IconData> _icons = [
+    FontAwesomeIcons.home,
     FontAwesomeIcons.peopleCarry,
     FontAwesomeIcons.book,
     Icons.computer,
@@ -36,8 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedIndex = 0;
-
   }
 
   void _signOut() async {
@@ -62,20 +61,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _handleSelection(int index){//header selection
     setState(() =>_selectedIndex = index);
-    if(index == 0){//general selected
+    if(index == 1){//general selected
       Navigator.push(context, MaterialPageRoute(builder: (_) => 
           GeneralPostScreen(
             databaseService: FireBaseDatabaseServiceImpl(), 
-            category: 'Perto de você',
+            category: 'home',
+            title: 'Perto de você',
             )
           )
         );
     }
-    if(index == 1){//book selected
+    if(index == 2){//book selected
      Navigator.push(context, MaterialPageRoute(builder: (_) => 
           GeneralPostScreen(
             databaseService: FireBaseDatabaseServiceImpl(), 
-            category: 'Livros',
+            category: 'book',
+            title: 'Livros',
             )
           )
         );
@@ -136,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(child: ListView(
-        padding: EdgeInsets.symmetric(vertical: 30.0),
+        padding: EdgeInsets.symmetric(vertical: 5.0),
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(left: 20.0, right: 120.0),
