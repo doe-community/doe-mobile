@@ -3,7 +3,6 @@ import 'package:doe/models/base_entity.dart';
 
 abstract class FirebaseDatabaseService {
   Future<void> save(collection, BaseEntity data);
-
 }
 
 class FireBaseDatabaseServiceImpl implements FirebaseDatabaseService{

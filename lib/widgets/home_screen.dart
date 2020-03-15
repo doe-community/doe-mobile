@@ -1,5 +1,7 @@
+import 'package:doe/screens/categories/general_post.dart';
 import 'package:doe/screens/donation_screen/galery_pick_screen.dart';
 import 'package:doe/services/firebase_auth_service.dart';
+import 'package:doe/services/firebase_database_service.dart';
 import 'package:doe/widgets/hotel_carousel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
     FontAwesomeIcons.dog,
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = 0;
+
+  }
+
   void _signOut() async {
     try {
       var currentUser = await FirebaseService.currentUser();
@@ -51,13 +60,39 @@ class _HomeScreenState extends State<HomeScreen> {
     
   }
 
+  _handleSelection(int index){//header selection
+    setState(() =>_selectedIndex = index);
+    if(index == 0){//general selected
+      Navigator.push(context, MaterialPageRoute(builder: (_) => 
+          GeneralPostScreen(
+            databaseService: FireBaseDatabaseServiceImpl(), 
+            category: 'Perto de você',
+            )
+          )
+        );
+    }
+    if(index == 1){//book selected
+     Navigator.push(context, MaterialPageRoute(builder: (_) => 
+          GeneralPostScreen(
+            databaseService: FireBaseDatabaseServiceImpl(), 
+            category: 'Livros',
+            )
+          )
+        );
+    }
+
+    if(index == 3){//devices selected
+
+    }
+
+    if(index == 4){//animal selected
+
+    }
+  }
+
   Widget _buildIcon(int index){
     return GestureDetector(
-      onTap: (){
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
+      onTap: () => _handleSelection(index),
         child: Container(
         width: 60.0,
         height: 60.0,
@@ -75,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _handleClick(int index){
+  _handleClick(int index){//Bottom navbar selection
     print('navigator buttom $index selected');
     setState(() => _currentTab = index);
     if(index == 0){//search icon
