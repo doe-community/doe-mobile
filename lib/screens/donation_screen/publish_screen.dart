@@ -28,19 +28,24 @@ class _PublishFormScreenState extends State<PublishFormScreen> {
 
   _publish() async{
     
-    String filePath = widget.donation.images;
+    String filePath = widget.donation.imageUrl;
     print('uploading donation image $filePath into firebase storage.');
 
+    var ref = FirebaseStorageService.getInstance().ref().child(filePath);
+
     setState(() {
-      _uploadTask =  FirebaseStorageService.getInstance().ref().child(filePath).putFile(widget.image);  
+      _uploadTask =  ref.putFile(widget.image); 
     });
     
 
   } 
 
-  _submit() {
+  _submit() async{
     try {
+     var downloadPath = await FirebaseStorageService.getInstance().ref().child(widget.donation.imageUrl).getDownloadURL();
+     print('image download path $downloadPath');
       print('saving donation in database');
+      widget.donation.imageUrl = downloadPath;
        FireBaseDatabaseServiceImpl()
             .save('donations', widget.donation)
             .then((_){
