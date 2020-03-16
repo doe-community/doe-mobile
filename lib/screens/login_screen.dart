@@ -59,135 +59,140 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'DoE',
-              style: TextStyle(
-                fontFamily: 'DancingScript',
-                fontSize: 50.0,
+      body: ListView(
+        children: <Widget>[
+         Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'DoE',
+                style: TextStyle(
+                  fontFamily: 'DancingScript',
+                  fontSize: 50.0,
+                ),
               ),
-            ),
-            Form(
-              key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 30.0,
-                      vertical: 10.0
-                    ),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        icon: Icon(Icons.email),
-                      ),
-                      validator: (input) => !input.contains('@')
-                          ? 'Please enter a valid email!'
-                          : null,
-                      onSaved: (input) => _email = input.trim(),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
+              Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 30.0,
                         vertical: 10.0
-                    ),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        icon: Icon(Icons.lock)
                       ),
-                      validator: (input) => input.length < 4
-                          ? 'Password must be at least 6 characters!'
-                          : null,
-                      onSaved: (input) => _password = input,
-                      obscureText: true,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          icon: Icon(Icons.email),
+                        ),
+                        validator: (input) => !input.contains('@')
+                            ? 'Please enter a valid email!'
+                            : null,
+                        onSaved: (input) => _email = input.trim(),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 8,),
-                  Divider(
-                    height: 60.0,
-                    color: Colors.grey[600],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        'Forgot password ?',
-                        style: TextStyle(
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30.0,
+                          vertical: 10.0
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          icon: Icon(Icons.lock)
+                        ),
+                        validator: (input) => input.length < 4
+                            ? 'Password must be at least 6 characters!'
+                            : null,
+                        onSaved: (input) => _password = input,
+                        obscureText: true,
+                      ),
+                    ),
+                    SizedBox(height: 8,),
+                    Divider(
+                      height: 30.0,
+                      color: Colors.grey[600],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Text(
+                          'Forgot password ?',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 13.0,
+                            decoration: TextDecoration.underline,
+                          ),
+
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20.0,),
+                    Container(
+                      width: 250.0,
+                      child: FlatButton(
+                          onPressed: _submit,
                           color: Colors.blue,
-                          fontSize: 13.0
-                        ),
-
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 20.0,),
-                  Container(
-                    width: 250.0,
-                    child: FlatButton(
-                        onPressed: _submit,
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(10.0),
-                        child: Text(
-                          'Login',
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold
+                            ),
+                          )),
+                    ),
+                    SizedBox(height: 50.0,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        horizontalLine(),
+                        Text(
+                          'Social Login',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold
-                          ),
-                        )),
-                  ),
-                  SizedBox(height: 100.0,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      horizontalLine(),
-                      Text(
-                        'Social Login',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: 'Poppins-Medium',
-                        ),
-                      ),
-                      horizontalLine(),
-                    ],
-                  ),
-                  SizedBox(height: 20.0),
-                  SocialIcons(onSignedIn: widget.onSignedIn),
-                  SizedBox(height: 40,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'New User ? ',
-                        style: TextStyle(
-                          fontFamily: 'Poppins-Medium',
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () => Navigator.pushNamed(context, SignupScreen.id),
-                        child: Text(
-                          'SignUp',
-                          style: TextStyle(
-                            color: Color(0xFF5d74e3),
-                            fontWeight: FontWeight.bold
+                            fontSize: 16.0,
+                            fontFamily: 'Poppins-Medium',
                           ),
                         ),
-                      ),
-                    ],
-                  )
+                        horizontalLine(),
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    SocialIcons(onSignedIn: widget.onSignedIn),
+                    SizedBox(height: 40,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'New User ? ',
+                          style: TextStyle(
+                            fontFamily: 'Poppins-Medium',
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => Navigator.pushNamed(context, SignupScreen.id),
+                          child: Text(
+                            'SignUp',
+                            style: TextStyle(
+                              color: Color(0xFF5d74e3),
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
 
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
+        ],
       ),
     );
   }
