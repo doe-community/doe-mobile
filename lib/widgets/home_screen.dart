@@ -50,6 +50,32 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  _showAlertDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext){
+        return AlertDialog(
+        title: Text('Sair'),
+        content: Text('Deseja realmente sair ?'),
+        actions: <Widget>[
+          Row(
+            children: <Widget>[              
+              FlatButton(
+                onPressed: () => Navigator.pop(context), 
+                child: Text('Cancelar'),
+              ),
+              FlatButton(
+                onPressed: _signOut, 
+                child: Text('Confirmar'),
+              ),
+            ],
+          ),
+        ],
+      );
+     }
+    );
+  }
+
   ImageProvider _getProfileImage(){
     if(widget.user != null && widget.user.photoUrl != null){
       return NetworkImage(widget.user.photoUrl);
@@ -129,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app), 
-            onPressed: _signOut,
+            onPressed: _showAlertDialog,
             ),
         ],
       ),
