@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
   final FirebaseUser user;
   final VoidCallback onSignedOut;
 
-  const HomeScreen({Key key, @required this.user, this.onSignedOut}) : super(key: key);
+  const HomeScreen({ @required this.user, this.onSignedOut });
 
 
   @override
@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       print('user $currentUser.email request signout');
       FirebaseService.signout();
       widget.onSignedOut();
+      Navigator.pop(context);
     } catch (e) {
       print(e.message);
     }
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _showAlertDialog(){
     showDialog(
       context: context,
-      builder: (BuildContext context){
+      builder: (context){
         return AlertDialog(
         title: Text('Sair'),
         content: Text('Deseja realmente sair ?'),
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text('Cancelar'),
               ),
               FlatButton(
-                onPressed: _signOut, 
+                onPressed:_signOut, 
                 child: Text('Confirmar'),
               ),
             ],
