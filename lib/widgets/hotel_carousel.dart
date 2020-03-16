@@ -24,12 +24,13 @@ class HotelCarousel extends StatelessWidget {
                         print('See All');
                       },
                       child: Text(
-                        'See All',
+                        'Ver mais',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 16.0,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 1.0,
+                            decoration: TextDecoration.underline
                         ),
                       ),
                     ),
@@ -37,15 +38,15 @@ class HotelCarousel extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 300.0,
+                height: 230.0,
                 child: ListView.builder(
                   itemCount: hotels.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index){
                     Hotel hotel = hotels[index];
                     return Container(
-                      margin: EdgeInsets.all(10.0),
-                      width: 240.0,
+                      margin: EdgeInsets.all(1.0),
+                      width: 160.0,
                       child: Stack(
                         alignment: Alignment.topCenter,
                         children: <Widget>[
@@ -104,8 +105,8 @@ class HotelCarousel extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
                                 child: Image(
-                                  height: 180.0,  
-                                  width: 220.0,
+                                  height: 150.0,  
+                                  width: 150.0,
                                   image: AssetImage(hotel.imageUrl),
                                   fit: BoxFit.cover,
                                 ),

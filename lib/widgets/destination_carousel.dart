@@ -27,12 +27,13 @@ class DestinationCarousel extends StatelessWidget {
                         print('See All');
                       },
                       child: Text(
-                        'See All',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.0,
+                        'Ver mais',
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                           letterSpacing: 1.0,
+                           decoration: TextDecoration.underline,
                         ),
                       ),
                     ),
@@ -40,7 +41,7 @@ class DestinationCarousel extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 300.0,
+                height: 230.0,
                 child: ListView.builder(
                   itemCount: destinations.length,
                   scrollDirection: Axis.horizontal,
@@ -54,18 +55,19 @@ class DestinationCarousel extends StatelessWidget {
                             builder: (_) => DestinationScreen(destination: destination,)));
                       },
                       child: Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 210.0,
+                        margin: EdgeInsets.all(1.0),
+                        width: 160.0,
+                        color: Colors.white,
                         child: Stack(
                           alignment: Alignment.topCenter,
                           children: <Widget>[
                             Positioned(
-                              bottom: 15.0,
+                              //bottom: 15.0,
                               child: Container(
-                                height: 120.0,
-                                width: 200.0,
+                                height: 230.0,
+                                width: 155.0,
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.white10,
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 child: Padding(
@@ -74,14 +76,6 @@ class DestinationCarousel extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(
-                                        '${destination.activities.length}',
-                                        style: TextStyle(
-                                          fontSize: 22.0,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 1.2
-                                        ),
-                                      ),
                                       Text(
                                         '${destination.description}',
                                         style: TextStyle(
@@ -110,8 +104,8 @@ class DestinationCarousel extends StatelessWidget {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20.0),
                                         child: Image(
-                                          height: 180.0,  
-                                          width: 180.0,
+                                          height: 150.0,  
+                                          width: 150.0,
                                           image: AssetImage(destination.imageUrl),
                                           fit: BoxFit.cover,
                                         ),
