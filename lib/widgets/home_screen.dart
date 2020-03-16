@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }else if(index == 1){//camera
       Navigator.push(context, MaterialPageRoute(builder: (_) => GaleryPickImageScreen(user: widget.user,)));
     }else{//profile
-
+      Navigator.push(context, CupertinoPageRoute(builder: (_) => ProfileScreen(user: widget.user,)));
     }
   }
 
