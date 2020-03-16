@@ -32,15 +32,11 @@ AuthStatus authStatus = AuthStatus.signedOut;
   }
 
   void _signedIn(){
-    setState(() {
-      authStatus = AuthStatus.signedIn;
-    });
+    setState(() =>authStatus = AuthStatus.signedIn);
   }
 
   void _signedOut(){
-    setState(() {
-        authStatus = AuthStatus.signedOut;
-    });
+    setState(() => authStatus = AuthStatus.signedOut);
   }
   
 
