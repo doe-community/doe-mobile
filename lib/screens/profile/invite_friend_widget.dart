@@ -8,7 +8,7 @@ class InviteItem extends StatelessWidget {
     Future<void>_share() async{
       await FlutterShare.share(
         title: 'Venha fazer parte da família DoE.',
-        text: 'Com DoE você pode doar e também receber coisas que você precisa. É simples, fácil e melhor de tudo, é de graça 😍.',
+        text: 'Com DoE você pode doar e também receber coisas que você precisa. É simples, fácil e melhor de tudo, é de graça 😍. Baixe agora!',
         linkUrl: 'https://flutter.dev/'
         );
     }
