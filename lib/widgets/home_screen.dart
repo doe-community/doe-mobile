@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       var currentUser = await FirebaseService.currentUser();
       print('user $currentUser.email request signout');
-      await FirebaseService.signout();
+      FirebaseService.signout();
       widget.onSignedOut();
     } catch (e) {
       print(e.message);
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _showAlertDialog(){
     showDialog(
       context: context,
-      builder: (BuildContext){
+      builder: (BuildContext context){
         return AlertDialog(
         title: Text('Sair'),
         content: Text('Deseja realmente sair ?'),
