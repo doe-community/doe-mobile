@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
     
   }
 
-  _handleSelection(int index){//header selection
+  _handleSelection(int index){//header selection. TODO: (Bad smell code) Use Map or create oject to handle this code
     setState(() =>_selectedIndex = index);
     if(index == 1){//general selected
     _nagivate(title: 'Perto de você', category: 'all');
