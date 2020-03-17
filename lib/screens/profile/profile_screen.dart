@@ -74,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           InviteItem(),
           SizedBox(height: 30.0,),
           LogoutItem(onSignedOut: widget.onSignedOut),
-          SizedBox(height: 30.0,),
+          SizedBox(height: 100.0,),
           DeleteAccountItem()
         ],
       ),

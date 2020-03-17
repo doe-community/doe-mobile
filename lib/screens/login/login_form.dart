@@ -1,28 +1,32 @@
-import 'package:doe/screens/signup_screen.dart';
 import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/utils/toast_utils.dart';
 import 'package:doe/widgets/home/home_screen.dart';
-import 'package:doe/widgets/social_icons_widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 
-
-class LoginScreen extends StatefulWidget {
-  static final String id = 'login_screen';
+class LoginForm extends StatefulWidget {
   final VoidCallback onSignedIn;
 
-  const LoginScreen({Key key, this.onSignedIn}) : super(key: key);
+  const LoginForm({ @required this.onSignedIn });
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginFormState createState() => _LoginFormState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-
+class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   String _email, _password;
+  
+
+  Widget horizontalLine() => Padding(
+    padding: EdgeInsets.symmetric(horizontal: 16.0),
+    child: Container(
+      width: 50,
+      height: 1.0,
+      color: Colors.black26.withOpacity(.2),
+    ),
+  );
 
   _submit() async {
     print('user click in login button.');
@@ -33,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       try {
         print('user $_email logged sucessfuly.');
         FirebaseUser _user = await FirebaseService.signInWithEmailAndPassword(_email, _password);
-        Navigator.pushReplacement(context, 
+        Navigator.push(context, 
         MaterialPageRoute(builder: (_) => HomeScreen(
           user: _user, 
           onSignedOut: widget.onSignedIn,
@@ -47,33 +51,10 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Widget horizontalLine() => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16.0),
-    child: Container(
-      width: 50,
-      height: 1.0,
-      color: Colors.black26.withOpacity(.2),
-    ),
-  );
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        children: <Widget>[
-         Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'DoE',
-                style: TextStyle(
-                  fontFamily: 'DancingScript',
-                  fontSize: 50.0,
-                ),
-              ),
-              Form(
+    return  Form(
                 key: _formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -133,18 +114,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 20.0,),
                     Container(
                       width: 250.0,
-                      child: FlatButton(
-                          onPressed: _submit,
-                          color: Colors.blue,
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Login',
+                      child: FlatButton( 
+                        onPressed: _submit,
+                        color: Colors.blue,
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          'Login',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold
                             ),
-                          )),
+                          )
+                      )
                     ),
                     SizedBox(height: 50.0,),
                     Row(
@@ -161,39 +143,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         horizontalLine(),
                       ],
                     ),
-                    SizedBox(height: 20.0),
-                    SocialIcons(onSignedIn: widget.onSignedIn),
-                    SizedBox(height: 40,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'New User ? ',
-                          style: TextStyle(
-                            fontFamily: 'Poppins-Medium',
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () => Navigator.pushNamed(context, SignupScreen.id),
-                          child: Text(
-                            'SignUp',
-                            style: TextStyle(
-                              color: Color(0xFF5d74e3),
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
 
                   ],
-                ),
-              )
-            ],
-          ),
-        ),
-        ],
-      ),
-    );
+                )
+              );
+              
   }
 }

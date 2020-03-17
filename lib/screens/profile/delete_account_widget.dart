@@ -51,17 +51,19 @@ class DeleteAccountItem extends StatelessWidget {
       onTap: _showWarningToast,
       onDoubleTap: _deleteAccount,
           child: Container(
-              margin: EdgeInsets.fromLTRB(100.0, 0.0, 100.0, 0.0),
-              padding: EdgeInsets.all(20.0),
+              margin: EdgeInsets.symmetric(horizontal: 100.0),
+              padding: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
                 color: Colors.red
               ),
-              child: Text(
-                'Apagar conta',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+              child: Center(
+                child: Text(
+                  'Apagar conta',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

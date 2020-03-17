@@ -5,7 +5,7 @@ class SocialIcon extends StatelessWidget {
   final IconData iconData;
   final Function onPress;
 
-  const SocialIcon({Key key, this.colors, this.iconData, this.onPress}) : super(key: key);
+  const SocialIcon({this.colors, this.iconData, this.onPress});
 
 
   @override

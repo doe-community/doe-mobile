@@ -1,5 +1,6 @@
-import 'package:doe/screens/login_screen.dart';
+import 'package:doe/screens/login/login_screen.dart';
 import 'package:doe/services/firebase_auth_service.dart';
+import 'package:doe/utils/toast_utils.dart';
 import 'package:doe/widgets/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,18 +18,20 @@ enum AuthStatus {
 }
 
 class _RootPageScreenState extends State<RootPageScreen> {
-FirebaseUser user;
+FirebaseUser _user;
 AuthStatus authStatus = AuthStatus.signedOut;
 
   @override
   void initState() {
     super.initState();
-    FirebaseService.currentUser().then((userId) {
+    FirebaseService.currentUser()
+    .then((userId) {
+      _user = userId;
       setState(() {
-        user = userId;
         authStatus = (userId ==  null) ? AuthStatus.signedOut : AuthStatus.signedIn;
-      });
-    });
+       });
+      }
+    ).catchError((error) => ToastUtils.showError('Erro! $error.code : $error.message'));
   }
 
   void _signedIn(){
@@ -51,7 +54,7 @@ AuthStatus authStatus = AuthStatus.signedOut;
       }
       case AuthStatus.signedIn: {
         return HomeScreen(
-          user: user,
+          user: _user,
           onSignedOut: _signedOut,);
       }
       default: {

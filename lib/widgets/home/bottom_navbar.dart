@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class HomeNavBar extends StatefulWidget {
   final FirebaseUser user;
 
-  const HomeNavBar({  this.user });
+  const HomeNavBar({ @required this.user });
 
 
   @override

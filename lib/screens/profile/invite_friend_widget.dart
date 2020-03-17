@@ -33,7 +33,7 @@ class InviteItem extends StatelessWidget {
                         ),
                         SizedBox(height: 2.0,),
                         Text(
-                          'Convide seus amigos para fazerem parte da famĩlia DoE. Ajude e seja ajudado.',
+                          'Convide seus amigos para fazerem parte da família DoE. Ajude e seja ajudado.',
                           style: TextStyle(
                             color: Colors.grey,
                             
