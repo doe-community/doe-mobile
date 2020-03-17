@@ -5,6 +5,8 @@ import 'package:doe/screens/profile/logout_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'delete_account_widget.dart';
+
 class ProfileScreen extends StatefulWidget {
   final FirebaseUser user;
   final VoidCallback onSignedOut;
@@ -72,6 +74,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           InviteItem(),
           SizedBox(height: 30.0,),
           LogoutItem(onSignedOut: widget.onSignedOut),
+          SizedBox(height: 30.0,),
+          DeleteAccountItem()
         ],
       ),
     );
