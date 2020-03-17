@@ -1,9 +1,6 @@
 import 'package:doe/screens/categories/general_post.dart';
-import 'package:doe/screens/donation_screen/galery_pick_screen.dart';
-import 'package:doe/screens/favorites/post_manager_screen.dart';
-import 'package:doe/screens/profile/profile_screen.dart';
-import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/services/firebase_database_service.dart';
+import 'package:doe/widgets/home/bottom_navbar.dart';
 import 'package:doe/widgets/hotel_carousel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +24,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   int _selectedIndex = 0;
-  int _currentTab = 0;
 
   List<IconData> _icons = [
     FontAwesomeIcons.home,
@@ -40,56 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-  }
-
-  void _signOut() async {
-    try {
-      var currentUser = await FirebaseService.currentUser();
-      print('user $currentUser.email request signout');
-      FirebaseService.signout();
-      widget.onSignedOut();
-      Navigator.pop(context);
-    } catch (e) {
-      print(e.message);
-    }
-  }
-
-  _showAlertDialog(){
-    showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-        title: Text('Sair'),
-        content: Text('Deseja realmente sair ?'),
-        actions: <Widget>[
-          Row(
-            children: <Widget>[              
-              FlatButton(
-                onPressed: () => Navigator.pop(context), 
-                child: Text('Cancelar'),
-              ),
-              FlatButton(
-                onPressed:(){
-                  Navigator.pop(context);
-                  _signOut();
-                }, 
-                child: Text('Confirmar'),
-              ),
-            ],
-          ),
-        ],
-      );
-     }
-    );
-  }
-
-  ImageProvider _getProfileImage(){
-    if(widget.user != null && widget.user.photoUrl != null){
-      return NetworkImage(widget.user.photoUrl);
-    }else{
-       return AssetImage('assets/images/profile.jpg',);
-    }
-    
   }
 
   _handleSelection(int index){//header selection. TODO: (Bad smell code) Use Map or create oject to handle this code
@@ -116,8 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
             databaseService: FireBaseDatabaseServiceImpl(), 
             category: category,
             title: title,
-            )
-          )
+            ),
+          ),
         );
   }
   
@@ -140,32 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  _handleClick(int index){//Bottom navbar selection
-    print('navigator buttom $index selected');
-    setState(() => _currentTab = index);
-    if(index == 0){//search icon
-      
-    }else if(index == 1){//camera
-      Navigator.push(context, MaterialPageRoute(
-        builder: (_) => GaleryPickImageScreen(
-          user: widget.user,
-          )
-        )
-      );
-    }else if(index == 2){//posts
-      Navigator.push(context, MaterialPageRoute(
-        builder: (_) => PostManagerScreen(
-          user: widget.user,
-          )
-        )
-      );
-    }else{//profile
-      Navigator.push(context, CupertinoPageRoute(builder: (_) => ProfileScreen(user: widget.user,)));
-    }
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -193,46 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 10.0,),
             HotelCarousel(),
           ],
-        )
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentTab,
-        onTap: (int index) => _handleClick(index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.search,
-              size: 20.0,
-              color: _currentTab == 0 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
-            ),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.camera,
-              size: 20.0,
-              color: _currentTab == 1 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
-            ),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.heart,
-              size: 20.0,
-              color: _currentTab == 2 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
-            ),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              radius: 20.0,
-              backgroundImage: _getProfileImage(),
-              backgroundColor: _currentTab == 0 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
-            ),
-            title: SizedBox.shrink(),
-          ),
-        ],
-      ),
+      bottomNavigationBar: HomeNavBar(user: widget.user,),
     );
   }
 }
