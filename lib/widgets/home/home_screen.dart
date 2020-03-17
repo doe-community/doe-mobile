@@ -1,13 +1,13 @@
 import 'package:doe/screens/categories/general_post.dart';
 import 'package:doe/services/firebase_database_service.dart';
 import 'package:doe/widgets/home/bottom_navbar.dart';
-import 'package:doe/widgets/hotel_carousel.dart';
+import 'package:doe/widgets/samples/hotel_carousel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../destination_carousel.dart';
+import '../samples/destination_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String id = 'home_screen';

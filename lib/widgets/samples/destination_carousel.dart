@@ -1,4 +1,4 @@
-import 'package:doe/models/destination_model.dart';
+import 'package:doe/models/samples/destination_model.dart';
 import 'package:doe/screens/destination_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

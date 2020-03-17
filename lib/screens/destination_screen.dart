@@ -1,5 +1,5 @@
-import 'package:doe/models/activity_model.dart';
-import 'package:doe/models/destination_model.dart';
+import 'package:doe/models/samples/activity_model.dart';
+import 'package:doe/models/samples/destination_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

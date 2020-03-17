@@ -1,4 +1,4 @@
-import 'package:doe/models/Donate.dart';
+import 'package:doe/models/donate_entity.dart';
 import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/utils/toast_utils.dart';
 import 'package:flutter/material.dart';

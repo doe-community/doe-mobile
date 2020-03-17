@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doe/models/Donate.dart';
+import 'package:doe/models/donate_entity.dart';
 import 'package:doe/screens/categories/post_view_widget.dart';
 import 'package:doe/services/firebase_database_service.dart';
 import 'package:flutter/cupertino.dart';

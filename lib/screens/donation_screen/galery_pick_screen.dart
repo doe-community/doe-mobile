@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path/path.dart' as path;
 
-import 'package:doe/models/Donate.dart';
+import 'package:doe/models/donate_entity.dart';
 import 'package:doe/screens/donation_screen/publish_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
