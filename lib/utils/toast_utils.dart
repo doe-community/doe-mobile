@@ -24,4 +24,15 @@ abstract class ToastUtils {
           textColor: Colors.white,
           fontSize: 16.0);
   }
+
+  static void warning(String message){
+    Fluttertoast.showToast(
+          msg: message,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIos: 5,
+          backgroundColor: Colors.white,
+          textColor: Colors.grey,
+          fontSize: 16.0);
+  }
 }
