@@ -4,7 +4,7 @@ import 'package:doe/services/firebase_auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
+import 'home/home_screen.dart';
 
 class SocialIcons extends StatelessWidget {
   final VoidCallback onSignedIn;

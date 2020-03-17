@@ -1,6 +1,6 @@
 import 'package:doe/screens/login_screen.dart';
 import 'package:doe/services/firebase_auth_service.dart';
-import 'package:doe/widgets/home_screen.dart';
+import 'package:doe/widgets/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

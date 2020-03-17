@@ -1,5 +1,6 @@
 import 'package:doe/screens/categories/general_post.dart';
 import 'package:doe/screens/donation_screen/galery_pick_screen.dart';
+import 'package:doe/screens/favorites/post_manager_screen.dart';
 import 'package:doe/screens/profile/profile_screen.dart';
 import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/services/firebase_database_service.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'destination_carousel.dart';
+import '../destination_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String id = 'home_screen';
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         );
   }
-
+  
   Widget _buildIcon(int index){
     return GestureDetector(
       onTap: () => _handleSelection(index),
@@ -146,7 +147,19 @@ class _HomeScreenState extends State<HomeScreen> {
     if(index == 0){//search icon
       
     }else if(index == 1){//camera
-      Navigator.push(context, MaterialPageRoute(builder: (_) => GaleryPickImageScreen(user: widget.user,)));
+      Navigator.push(context, MaterialPageRoute(
+        builder: (_) => GaleryPickImageScreen(
+          user: widget.user,
+          )
+        )
+      );
+    }else if(index == 2){//posts
+      Navigator.push(context, MaterialPageRoute(
+        builder: (_) => PostManagerScreen(
+          user: widget.user,
+          )
+        )
+      );
     }else{//profile
       Navigator.push(context, CupertinoPageRoute(builder: (_) => ProfileScreen(user: widget.user,)));
     }
@@ -188,8 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.search,
+              FontAwesomeIcons.search,
               size: 20.0,
+              color: _currentTab == 0 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
             ),
             title: SizedBox.shrink(),
           ),
@@ -197,6 +211,15 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(
               FontAwesomeIcons.camera,
               size: 20.0,
+              color: _currentTab == 1 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
+            ),
+            title: SizedBox.shrink(),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesomeIcons.heart,
+              size: 20.0,
+              color: _currentTab == 2 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
             ),
             title: SizedBox.shrink(),
           ),
@@ -204,6 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: CircleAvatar(
               radius: 20.0,
               backgroundImage: _getProfileImage(),
+              backgroundColor: _currentTab == 0 ? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
             ),
             title: SizedBox.shrink(),
           ),
