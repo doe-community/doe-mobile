@@ -47,4 +47,9 @@ class FirebaseService {
     await _googleSignIn.signOut();
   }
 
+  static Future<GoogleSignInAccount> deleteAccount() async {
+    print('firebase disconnect user.');
+    return await _googleSignIn.disconnect();
+  }
+
 }

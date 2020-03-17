@@ -1,3 +1,4 @@
+import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/utils/toast_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,15 @@ class DeleteAccountItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-  Future<void> _deleteAccount() async{//TODO: Refatorar. Usar utils e retornar boolean
+    __submitDelete(){
+      print('delete account trigged!');
+      FirebaseService.deleteAccount()
+      .then((result) => Navigator.pop(context))
+      .catchError((error) => ToastUtils.showError('Não foi possível concluir a sua solicitação. Erro $error.code : $error.message'));
+      
+    }
+
+    Future<void> _deleteAccount() async{//TODO: Refatorar. Usar utils e retornar boolean
       showDialog(
         context: context,
         builder: (BuildContext context){
@@ -26,6 +35,7 @@ class DeleteAccountItem extends StatelessWidget {
                 FlatButton(
                   onPressed:(){
                     Navigator.pop(context);
+                    __submitDelete();
                   }, 
                   child: Text('Confirmar'),
                 ),
