@@ -1,13 +1,15 @@
 import 'package:doe/screens/profile/account_widget.dart';
 import 'package:doe/screens/profile/help_widget.dart';
 import 'package:doe/screens/profile/invite_friend_widget.dart';
+import 'package:doe/screens/profile/logout_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
   final FirebaseUser user;
+  final VoidCallback onSignedOut;
 
-  const ProfileScreen({ this.user });
+  const ProfileScreen({ this.user, this.onSignedOut });
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -68,6 +70,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           HelpItem(),
           SizedBox(height: 30.0,),
           InviteItem(),
+          SizedBox(height: 30.0,),
+          LogoutItem(onSignedOut: widget.onSignedOut),
         ],
       ),
     );
