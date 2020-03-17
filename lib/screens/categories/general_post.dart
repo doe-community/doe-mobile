@@ -121,33 +121,8 @@ class _GeneralPostScreenState extends State<GeneralPostScreen> {
              }).toList(),
             );
           }
-      },
-    ),
-
-
-
-      //backgroundColor: Theme.of(context).primaryColor,
-      /*body: ListView.builder(
-        //itemCount: posts.length,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (BuildContext context, int index){
-          return GestureDetector(
-            onTap: () => _handleView(index),
-            child: Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.all(5.0),
-              height: 170.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white60,
-                borderRadius: BorderRadius.circular(30.0)
-              ),
-              child: Text(
-                'Hola $index'
-              ),
-            ),
-          );
-        }),*/
-    );
+       },
+      ),
+   );
   }
 }
