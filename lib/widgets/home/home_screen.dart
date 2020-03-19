@@ -1,5 +1,6 @@
 import 'package:doe/screens/categories/general_post.dart';
 import 'package:doe/services/firebase_database_service.dart';
+import 'package:doe/services/messaging_service.dart';
 import 'package:doe/widgets/home/bottom_navbar.dart';
 import 'package:doe/widgets/samples/hotel_carousel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,9 +20,12 @@ class HomeScreen extends StatefulWidget {
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
-}
+  }
 
 class _HomeScreenState extends State<HomeScreen> {
+  FirebaseDatabaseService databaseService = FireBaseDatabaseServiceImpl();
+
+  MessageService messageService;
 
   int _selectedIndex = 0;
 
@@ -36,6 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    
+    messageService = MessageService(user: widget.user, databaseService: databaseService);
+    messageService.setupCloudMessaging(); 
+    messageService.setupNotificationHandler(context);   
   }
 
   _handleSelection(int index){//header selection. TODO: (Bad smell code) Use Map or create oject to handle this code
@@ -59,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _nagivate({String title, String category}){
     Navigator.push(context, MaterialPageRoute(builder: (_) => 
           GeneralPostScreen(
-            databaseService: FireBaseDatabaseServiceImpl(), 
+            databaseService: databaseService, 
             category: category,
             title: title,
             ),
