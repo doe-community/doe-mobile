@@ -11,6 +11,7 @@ class Donate implements BaseEntity{
   Timestamp date;
   String user;
   String additionalInfo;
+  String id;
 
   Donate({ 
     this.title, 
@@ -38,6 +39,7 @@ class Donate implements BaseEntity{
     this.imageUrl = json['images'],
     this.date = json['date'],
     this.user = json['user'],
-    this.additionalInfo = json['additional_info']
+    this.additionalInfo = json['additional_info'],
+    this.id = json['id']
     ;
 }
