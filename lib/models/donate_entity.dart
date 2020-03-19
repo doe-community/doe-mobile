@@ -33,11 +33,11 @@ class Donate implements BaseEntity{
   };
 
   Donate.fromJson(Map<String, dynamic> json)
-      : this.title = json['title'],
-        this.city = json['city'],
-        this.imageUrl = json['images'],
-        this.date = json['date'],
-        this.user = json['user'],
-        this.additionalInfo = json['additional_info']
-        ;
+  : this.title = json['title'],
+    this.city = json['city'],
+    this.imageUrl = json['images'],
+    this.date = json['date'],
+    this.user = json['user'],
+    this.additionalInfo = json['additional_info']
+    ;
 }
