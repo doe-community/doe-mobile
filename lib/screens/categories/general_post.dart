@@ -23,6 +23,11 @@ class _GeneralPostScreenState extends State<GeneralPostScreen> {
     Navigator.push(context, CupertinoPageRoute(builder: (_) => PostViewScreen(post: _post,)));
   }
 
+  _getUserProfileInfo() async {
+    var profile = await widget.databaseService.getDocument("profiles", "slamine@ppadtec.com.br");
+    print('User profile ' + profile);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +44,7 @@ class _GeneralPostScreenState extends State<GeneralPostScreen> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: widget.databaseService.getInstance().collection('donations').orderBy('date', descending: true).snapshots(), //TODO: filter donations by category
+        stream: widget.databaseService.getInstance().collection('donations').document('items').collection('all').orderBy('date', descending: true).snapshots(), //TODO: filter donations by category
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError)
             return new Text('Error: ${snapshot.error}');
