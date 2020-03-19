@@ -146,7 +146,7 @@ class _GaleryPickImageScreen extends State<GaleryPickImageScreen> {
                           ),
                           child: TextFormField(
                             decoration: InputDecoration(
-                              labelText: 'Cidade',
+                              labelText: 'Cidade para doação',
                               icon: Icon(Icons.location_city),
                             ),
                             validator: (input) => input.trim().isEmpty
