@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doe/services/firebase_database_service.dart';
+import 'package:doe/utils/alert_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -41,23 +42,17 @@ class MessageService {
       _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("on message: $message");
-
-        final snackbar = SnackBar(
-          content: Text(message['notification']['title']),
-          action: SnackBarAction(
-            label: 'Go',
-            onPressed: () => null,
-            ), 
-        );
-        Scaffold.of(context).showSnackBar(snackbar);
+        AlertUtils.show(context, message['notification']['title'], message['notification']['body']);
       },
 
       onResume: (Map<String, dynamic> message) async {
         print("on resume: $message");
+        AlertUtils.show(context, message['notification']['title'], message['notification']['body']);
       },
 
       onLaunch: (Map<String, dynamic> message) async {
         print("on lauch: $message");
+        AlertUtils.show(context, message['notification']['title'], message['notification']['body']);
       },
     );
   }
