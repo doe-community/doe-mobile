@@ -1,7 +1,10 @@
+import 'package:doe/models/booking_request.dart';
 import 'package:doe/models/donate_entity.dart';
 import 'package:doe/services/firebase_auth_service.dart';
 import 'package:doe/utils/toast_utils.dart';
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
 
 class PostViewScreen extends StatefulWidget {
   final Donate post;
@@ -14,13 +17,19 @@ class PostViewScreen extends StatefulWidget {
 
 class _PostViewScreenState extends State<PostViewScreen> {
 
+  String _baseUrl = 'https://us-central1-doei-b018d.cloudfunctions.net';
+
   _handleRequest() async{
     var currentUser = await FirebaseService.currentUser();
     if(currentUser.email == widget.post.user){
       ToastUtils.showError('Você não pode querer sua própria doação. 🤦🏿‍♂️');
     }else{
-     print('Eu quero ${currentUser.email}');
+     print('User ${currentUser.email} requesting for donate.');
      //send push notification to post owner
+     Map<String, String> headers = {"Content-type": "application/json"};
+     var data = BookingRequest(owner: widget.post.user, requester: currentUser.email, postId: "lamine@gmail.com");
+     var result = await http.post(_baseUrl+"/bookItem", body: data.toJson());
+     print(result);
     }
   }
   @override
