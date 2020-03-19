@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: HomeNavBar(user: widget.user,),
+      bottomNavigationBar: HomeBottomNavBar(user: widget.user,),
     );
   }
 }

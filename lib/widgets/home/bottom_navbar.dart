@@ -6,17 +6,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeNavBar extends StatefulWidget {
+class HomeBottomNavBar extends StatefulWidget {
   final FirebaseUser user;
 
-  const HomeNavBar({ @required this.user });
+  const HomeBottomNavBar({ @required this.user });
 
 
   @override
-  _HomeNavBarState createState() => _HomeNavBarState();
+  _HomeBottomNavBar createState() => _HomeBottomNavBar();
 }
 
-class _HomeNavBarState extends State<HomeNavBar> {
+class _HomeBottomNavBar extends State<HomeBottomNavBar> {
     int _currentTab = 0;
 
   _handleClick(int index){//Bottom navbar selection
