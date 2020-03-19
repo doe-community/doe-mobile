@@ -39,13 +39,16 @@ class _GeneralPostScreenState extends State<GeneralPostScreen> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance.collection('donations').orderBy('date', descending: true).snapshots(), //TODO: filter donations by category
+        stream: widget.databaseService.getInstance().collection('donations').orderBy('date', descending: true).snapshots(), //TODO: filter donations by category
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError)
             return new Text('Error: ${snapshot.error}');
           switch (snapshot.connectionState) {
-            case ConnectionState.waiting: return CircularProgressIndicator(
-              value: 80,
+            case ConnectionState.waiting: 
+            return Center(
+              child: CircularProgressIndicator(
+                value: 80,
+              ),
             );
             default:
               return new ListView(
