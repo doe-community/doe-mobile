@@ -47,7 +47,7 @@ class _PublishFormScreenState extends State<PublishFormScreen> {
       print('saving donation in database');
       widget.donation.imageUrl = downloadPath;
        FireBaseDatabaseServiceImpl()
-            .save('donations', widget.donation)
+            .save(collection: 'donations/items/all', data: widget.donation)
             .then((_){
               print('donation $widget.donation saved!');
               ToastUtils.showSuccess('Doação publicado com sucesso!');
