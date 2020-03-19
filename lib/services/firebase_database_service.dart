@@ -3,7 +3,7 @@ import 'package:doe/models/base_entity.dart';
 
 abstract class FirebaseDatabaseService {
   Firestore getInstance();
-  Future<void> save(collection, BaseEntity data);
+  Future<void> save({ String collection, BaseEntity data });
   getDocument(collection, document);
   getDocumentEqualTo(collection, field, value);
   getUserProfile(userId);
@@ -19,7 +19,7 @@ class FireBaseDatabaseServiceImpl implements FirebaseDatabaseService{
   }
 
   @override
-  Future<void> save(collection, BaseEntity data) async{///Data should be in json format
+  Future<void> save({collection, BaseEntity data}) async{///Data should be in json format
     await _firestore
               .collection(collection)
               .reference()
