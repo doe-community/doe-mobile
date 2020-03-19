@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10.0,),
                 Text(
-                  widget.user.displayName,
+                  widget.user.displayName == null ? '': widget.user.displayName,
                 ),
                 Text(
                   widget.user.email,
