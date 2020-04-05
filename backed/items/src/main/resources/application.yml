@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: items
   data:
     elasticsearch:
       properties:
@@ -10,6 +12,13 @@ spring:
         enabled: true
       cluster-nodes: localhost:9300
       cluster-name: es-docker-cluster
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
 server:
   port: 8081
