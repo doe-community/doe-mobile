@@ -1,0 +1,15 @@
+spring:
+  data:
+    elasticsearch:
+      properties:
+        node:
+          master: true
+        http:
+          enabled: true
+      repositories:
+        enabled: true
+      cluster-nodes: localhost:9300
+      cluster-name: es-docker-cluster
+
+server:
+  port: 8081
